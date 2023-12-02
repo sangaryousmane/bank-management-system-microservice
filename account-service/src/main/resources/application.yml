@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: ACCOUNT-SERVICE
+  h2:
+    console:
+      enabled: true
+
+server:
+  port: 6060
+
+eureka:
+  client:
+    serviceUrl:
+      default-zone: ${EUREKA_URL:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+
+

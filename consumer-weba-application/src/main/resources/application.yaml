@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: WEB-APPLICATION-CONSUMER
+
+server:
+  port: 6464
+
+eureka:
+  client:
+    serviceUrl:
+      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+ribbon:
+  http:
+    client:
+      enabled: true
