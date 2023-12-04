@@ -2,6 +2,7 @@ package com.ousmane.accountservice.controller;
 
 import com.ousmane.accountservice.entities.Account;
 import com.ousmane.accountservice.service.AccountServiceImpl;
+import jakarta.ws.rs.Path;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,5 +50,11 @@ public class AccountController {
         Map<String, Boolean> recordDetails = new HashMap<>();
         recordDetails.put("Deleted", isAccountDeleted);
         return ResponseEntity.ok(recordDetails);
+    }
+
+    @GetMapping("/customer/{customerId}")
+    public ResponseEntity<List<Account>> accountByCustomer(
+            @PathVariable("customerId") Integer customerId){
+        return ResponseEntity.ok(accountService.findByCustomer(customerId));
     }
 }

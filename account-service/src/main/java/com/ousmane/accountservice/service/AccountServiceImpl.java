@@ -63,7 +63,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public List<Account> findByCustomerName(Integer customerId) {
+    public List<Account> findByCustomer(Integer customerId) {
         return accountRepository.findByCustomerId(customerId);
     }
 }

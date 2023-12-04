@@ -13,5 +13,5 @@ public interface AccountService {
     boolean deleteAccount(Integer accountId);
     Account updateAccountDetails(Account account, Integer accountId);
     List<Account> findByBankName(String bankName);
-    List<Account> findByCustomerName(Integer customerId);
+    List<Account> findByCustomer(Integer customerId);
 }

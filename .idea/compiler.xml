@@ -10,6 +10,7 @@
         <module name="spring-service-registry" />
         <module name="account-service" />
         <module name="consumer-weba-application" />
+        <module name="customer-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -17,6 +18,7 @@
       <module name="api-gateway-zuul" target="17" />
       <module name="api-zuul-service" target="1.8" />
       <module name="consumer-weba-application" target="17" />
+      <module name="customer-service" target="17" />
       <module name="getway" target="17" />
       <module name="spring-service-registry" target="17" />
     </bytecodeTargetLevel>
@@ -27,6 +29,7 @@
       <module name="api-gateway-zuul" options="-parameters" />
       <module name="api-zuul-service" options="-parameters" />
       <module name="consumer-weba-application" options="-parameters" />
+      <module name="customer-service" options="-parameters" />
       <module name="getway" options="-parameters" />
       <module name="spring-service-registry" options="-parameters" />
     </option>
