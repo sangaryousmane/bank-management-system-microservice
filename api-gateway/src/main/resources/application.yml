@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: API-GATEWAY-SERVICE
+  cloud:
+    discovery:
+      enabled: true
+#    gateway:
+#      routes:
+#        - id: v1
+#          uri: http://localhost:8081
+#          predicates:
+#            - Path= /customers/**
+#        - id: v2
+#          uri: http://localhost:8082
+#          predicates:
+#            - Path= /products/**
