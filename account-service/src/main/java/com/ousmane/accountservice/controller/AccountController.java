@@ -11,15 +11,15 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/accounts")
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/accounts")
 public class AccountController {
 
 
     private final AccountServiceImpl accountService;
 
 
-    @GetMapping
+    @GetMapping("/")
     public Iterable<Account> getAllAccounts() {
         return accountService.getAllCurrentAccounts();
     }
