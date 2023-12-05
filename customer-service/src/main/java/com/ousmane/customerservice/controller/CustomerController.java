@@ -1,10 +1,8 @@
 package com.ousmane.customerservice.controller;
-
 import com.ousmane.customerservice.entities.Customer;
 import com.ousmane.customerservice.service.CustomerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.Map;
 
