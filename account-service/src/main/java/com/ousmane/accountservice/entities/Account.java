@@ -1,6 +1,7 @@
 package com.ousmane.accountservice.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
 @Entity(name = "Account")
 @Table(name = "accounts")
 @NoArgsConstructor
+@AllArgsConstructor @Builder
 public class Account implements Serializable {
 
     @Serial

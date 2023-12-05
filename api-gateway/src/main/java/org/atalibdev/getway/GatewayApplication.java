@@ -21,7 +21,7 @@ public class GatewayApplication {
                 .route(r -> r.path("/api/v1/accounts/**")
                         .uri("lb://ACCOUNT-SERVICE"))
                 .route(r -> r.path("/api/v1/customers/**")
-                        .uri("lb://CUSTOMERS-SERVICE"))
+                        .uri("lb://CUSTOMER-SERVICE"))
                 .route(r -> r.path("/api/v1/orders/**")
                         .uri("lb://ORDER-SERVICE")).build();
     }

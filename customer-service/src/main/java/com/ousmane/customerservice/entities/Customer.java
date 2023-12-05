@@ -3,16 +3,21 @@ package com.ousmane.customerservice.entities;
 
 import com.ousmane.customerservice.external.Account;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 
 import java.util.List;
 
 @Entity(name = "Customer")
 @Table(name = "customers")
+@AllArgsConstructor
+@Builder @NoArgsConstructor
 public class Customer {
 
     @Id
-    private Long customerId;
+    private Integer customerId;
 
     private String customerName;
     private String customerPhone;
@@ -34,11 +39,11 @@ public class Customer {
                 '}';
     }
 
-    public Long getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Long customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
