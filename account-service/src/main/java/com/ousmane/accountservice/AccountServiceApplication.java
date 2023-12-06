@@ -24,36 +24,24 @@ public class AccountServiceApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Account account=Account.builder()
-                .accountId(1)
-                .accountBalance(2231.01)
-                .accountType(AccountType.SAVING)
-                .bankName("BOC")
-                .customerId(12)
-                .branchCode("BOC123")
+                .accountId(1).accountBalance(2231.01)
+                .accountType(AccountType.SAVING).bankName("BOC")
+                .customerId(12).branchCode("BOC123")
                 .build();
          Account account1=Account.builder()
-                .accountId(2)
-                .accountBalance(4001.01)
-                .accountType(AccountType.CREDIT)
-                .bankName("ICBC")
-                .customerId(12)
-                .branchCode("ICBC123")
+                .accountId(2).accountBalance(4001.01)
+                 .accountType(AccountType.CREDIT)
+                .bankName("ICBC").customerId(12).branchCode("ICBC123")
                 .build();
          Account account2=Account.builder()
-                .accountId(3)
-                .accountBalance(5011.11)
-                .accountType(AccountType.SAVING)
-                .bankName("PSB")
-                .customerId(13)
-                .branchCode("PSB123")
+                .accountId(3).accountBalance(5011.11)
+                .accountType(AccountType.SAVING).bankName("PSB")
+                .customerId(13).branchCode("PSB123")
                 .build();
          Account account3=Account.builder()
-                .accountId(3)
-                .accountBalance(1001.11)
-                .accountType(AccountType.DEBIT)
-                .bankName("PSB")
-                .customerId(14)
-                .branchCode("PSB123")
+                .accountId(3).accountBalance(1001.11)
+                .accountType(AccountType.DEBIT).bankName("PSB")
+                .customerId(14).branchCode("PSB123")
                 .build();
          accountRepo.saveAll(
                  List.of(account, account1, account2, account3));

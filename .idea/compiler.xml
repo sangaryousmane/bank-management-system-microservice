@@ -20,6 +20,7 @@
       <module name="consumer-weba-application" target="17" />
       <module name="customer-service" target="17" />
       <module name="getway" target="17" />
+      <module name="notification-service" target="17" />
       <module name="spring-service-registry" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -31,6 +32,7 @@
       <module name="consumer-weba-application" options="-parameters" />
       <module name="customer-service" options="-parameters" />
       <module name="getway" options="-parameters" />
+      <module name="notification-service" options="-parameters" />
       <module name="spring-service-registry" options="-parameters" />
     </option>
   </component>
