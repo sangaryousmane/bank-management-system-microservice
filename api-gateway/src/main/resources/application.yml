@@ -6,15 +6,15 @@ spring:
   cloud:
     discovery:
       enabled: true
-    gateway:
-      routes:
-        filters:
-          - name: CircuitBreaker
-            args:
-              name: CUSTOMER-SERVICE
-              fallbackuri: forward:/customerServiceFallBack
-              name: ACCOUNT-SERVICE
-              fallbackuri: forward:/accountServiceFallBack
+#    gateway:
+#      routes:
+#        filters:
+#          - name: CircuitBreaker
+#            args:
+#              name: CUSTOMER-SERVICE
+#              fallbackuri: forward:/customerServiceFallBack
+#              name: ACCOUNT-SERVICE
+#              fallbackuri: forward:/accountServiceFallBack
 
 #    gateway:
 #      routes:

@@ -19,11 +19,20 @@ public class GatewayApplication {
     RouteLocator router(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(r -> r.path("/api/v1/accounts/**")
-                        .uri("lb://ACCOUNT-SERVICE"))
+                        .filters(f -> f.circuitBreaker(c-> {
+                            c.setName("ACCOUNT-SERVICE");
+                            c.setFallbackUri("forward:/accountServiceFallBack");
+                        })).uri("lb://ACCOUNT-SERVICE"))
                 .route(r -> r.path("/api/v1/customers/**")
-                        .uri("lb://CUSTOMER-SERVICE"))
+                        .filters(f -> f.circuitBreaker(c -> {
+                           c.setName("CUSTOMER-SERVICE");
+                           c.setFallbackUri("forward:/accountServiceFallBack");
+                        })).uri("lb://CUSTOMER-SERVICE"))
                 .route(r -> r.path("/api/v1/consumerApp/**")
-                        .uri("lb://WEB-APPLICATION-CONSUMER"))
+                        .filters(f -> f.circuitBreaker(c ->{
+                            c.setName("WEB-APPLICATION-CONSUMER");
+                            c.setFallbackUri("forward:/webServiceFallBack");
+                        })).uri("lb://WEB-APPLICATION-CONSUMER"))
                 .build();
     }
 

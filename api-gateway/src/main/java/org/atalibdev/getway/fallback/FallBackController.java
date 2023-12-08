@@ -15,4 +15,9 @@ public class FallBackController {
     public String accountServiceFallBack(){
         return "Account service is down!!!";
     }
+
+    @GetMapping("/webServiceFallBack")
+    public String webConsumerService(){
+        return "Web Consumer service is down!!";
+    }
 }
