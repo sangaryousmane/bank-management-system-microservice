@@ -1,14 +1,11 @@
 package com.ousmane.customerservice.service;
 
 import com.ousmane.customerservice.entities.Customer;
-import com.ousmane.customerservice.external.Account;
 import com.ousmane.customerservice.external.consumer.AccountService;
 import com.ousmane.customerservice.repo.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @Slf4j
@@ -24,6 +21,7 @@ public class CustomerService {
     }
 
     public Customer saveCustomer(Customer customer) {
+        log.info("Saving customer details:: {}", customer);
         return customerRepository.save(customer);
     }
 
@@ -37,10 +35,13 @@ public class CustomerService {
         customerInDB.setCustomerPhone(customer.getCustomerPhone());
         customerInDB.setCity(customer.getCity());
         customerInDB.setEmail(customer.getEmail());
+        customerRepository.save(customerInDB);
+        log.info("Updating customer details:: {}", customer);
         return customer;
     }
 
     public Customer getCustomerById(Integer customerId) {
+        log.info("Retrieving customer details by ID: {}", customerId);
         return customerRepository.findById(customerId)
                 .orElseThrow(() -> new RuntimeException("customer not found"));
     }
@@ -48,6 +49,7 @@ public class CustomerService {
     public Customer findCustomerByAccountId(Integer customerId) {
         Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new RuntimeException("customer not found"));
         customer.setAccounts(accountService.getAccountList(customerId));
+        log.info("Retrieving customers and account details:: {}", customer.getAccounts());
         return customer;
     }
 
@@ -56,8 +58,10 @@ public class CustomerService {
 
         if (isCustomerExist) {
             customerRepository.deleteById(customerId);
+            log.info("Deleting customers by ID: {}", customerId);
             return true;
         }
+        log.error("OH OH! customer with ID {} can't be deleted", customerId);
         return false;
     }
 }

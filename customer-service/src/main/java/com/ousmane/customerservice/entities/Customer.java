@@ -1,6 +1,7 @@
 package com.ousmane.customerservice.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ousmane.customerservice.external.Account;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -79,6 +80,7 @@ public class Customer {
         this.city = city;
     }
 
+    @JsonIgnore
     public List<Account> getAccounts() {
         return accounts;
     }
