@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/../first-microservice-product-main/getway/pom.xml" />
         <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/customer-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../microservicedemo/spring-boot-online-shopping-microservices/ConfigServerService/pom.xml" />
       </list>
     </option>
   </component>

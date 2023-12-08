@@ -12,11 +12,18 @@
         <module name="consumer-weba-application" />
         <module name="customer-service" />
       </profile>
+      <profile name="Annotation profile for ConfigServerService" enabled="true">
+        <sourceOutputDir name="../../microservicedemo/spring-boot-online-shopping-microservices/ConfigServerService/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../../microservicedemo/spring-boot-online-shopping-microservices/ConfigServerService/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ConfigServerService" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="account-service" target="17" />
       <module name="api-gateway-zuul" target="17" />
       <module name="api-zuul-service" target="1.8" />
+      <module name="ConfigServerService" target="17" />
       <module name="consumer-weba-application" target="17" />
       <module name="customer-service" target="17" />
       <module name="getway" target="17" />
@@ -26,6 +33,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ConfigServerService" options="-parameters" />
       <module name="account-service" options="-parameters" />
       <module name="api-gateway-zuul" options="-parameters" />
       <module name="api-zuul-service" options="-parameters" />

@@ -4,13 +4,8 @@ server:
 spring:
   application:
     name: CUSTOMER-SERVICE
-
-eureka:
-  client:
-    serviceUrl:
-      default-zone: ${EUREKA_URL:http://localhost:8761/eureka}
-  instance:
-    preferIpAddress: true
+  config:
+    import: configserver:http://localhost:9296
 
 
 

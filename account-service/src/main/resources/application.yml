@@ -4,15 +4,10 @@ spring:
   h2:
     console:
       enabled: true
+  config:
+    import: configserver:http://localhost:9296
 
 server:
   port: 6060
-
-eureka:
-  client:
-    serviceUrl:
-      default-zone: ${EUREKA_URL:http://localhost:8761/eureka}
-  instance:
-    preferIpAddress: true
 
 

@@ -3,6 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/Chapter-07-api-zuul-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Chapter-07-api-zuul-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ConfigServerService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ConfigServerService/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/account-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/account-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/api-gateway-zuul/src/main/java" charset="UTF-8" />
@@ -19,5 +21,6 @@
     <file url="file://$PROJECT_DIR$/notification-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-service-registry/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-service-registry/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../microservicedemo/spring-boot-online-shopping-microservices/ConfigServerService/src/main/java" charset="UTF-8" />
   </component>
 </project>
