@@ -22,8 +22,9 @@ public class GatewayApplication {
                         .uri("lb://ACCOUNT-SERVICE"))
                 .route(r -> r.path("/api/v1/customers/**")
                         .uri("lb://CUSTOMER-SERVICE"))
-                .route(r -> r.path("/api/v1/orders/**")
-                        .uri("lb://ORDER-SERVICE")).build();
+                .route(r -> r.path("/api/v1/consumerApp/**")
+                        .uri("lb://WEB-APPLICATION-CONSUMER"))
+                .build();
     }
 
     @Bean

@@ -30,6 +30,6 @@ public class WebAccountService {
     }
 
     public List<Account> getAllAccounts(){
-      return restTemplate.getForObject(serviceURL+"/api/v1/accounts", List.class);
+      return restTemplate.getForObject(serviceURL+"/api/v1/accounts/", List.class);
     }
 }
