@@ -1,6 +1,7 @@
 package com.ousmane.accountservice.service;
 
 import com.ousmane.accountservice.entities.Account;
+import com.ousmane.accountservice.exceptions.AccountNotFoundException;
 import com.ousmane.accountservice.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +26,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account getAccountDetails(Integer accountId) {
         return accountRepository.findById(accountId)
-                .orElseThrow(() -> new RuntimeException("Account Not found"));
+                .orElseThrow(() -> new AccountNotFoundException("Account Not found"));
     }
 
     @Override
@@ -46,7 +47,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account updateAccountDetails(Account account, Integer accountId) {
         Account accountInDB = accountRepository.findById(accountId)
-                .orElseThrow(() -> new RuntimeException("Not found"));
+                .orElseThrow(() -> new AccountNotFoundException("Account found"));
 
         account.setBankName(accountInDB.getBankName());
         account.setBranchCode(accountInDB.getBranchCode());
