@@ -9,14 +9,9 @@
         <module name="getway" />
         <module name="spring-service-registry" />
         <module name="account-service" />
+        <module name="ConfigServerService" />
         <module name="consumer-weba-application" />
         <module name="customer-service" />
-      </profile>
-      <profile name="Annotation profile for ConfigServerService" enabled="true">
-        <sourceOutputDir name="../../microservicedemo/spring-boot-online-shopping-microservices/ConfigServerService/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../../microservicedemo/spring-boot-online-shopping-microservices/ConfigServerService/target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="ConfigServerService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

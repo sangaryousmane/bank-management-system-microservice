@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../microservicedemo/spring-boot-online-shopping-microservices/ConfigServerService/ConfigServerService.iml" filepath="$PROJECT_DIR$/../microservicedemo/spring-boot-online-shopping-microservices/ConfigServerService/ConfigServerService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ConfigServerService/ConfigServerService.iml" filepath="$PROJECT_DIR$/ConfigServerService/ConfigServerService.iml" />
       <module fileurl="file://$PROJECT_DIR$/account-service/account-service.iml" filepath="$PROJECT_DIR$/account-service/account-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/bank-management-system.iml" filepath="$PROJECT_DIR$/.idea/bank-management-system.iml" />
       <module fileurl="file://$PROJECT_DIR$/consumer-web-application/consumer-weba-application.iml" filepath="$PROJECT_DIR$/consumer-web-application/consumer-weba-application.iml" />

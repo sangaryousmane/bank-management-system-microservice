@@ -1,7 +1,6 @@
 package com.ousmane.customerservice;
 
 import com.ousmane.customerservice.entities.Customer;
-import com.ousmane.customerservice.external.consumer.AccountService;
 import com.ousmane.customerservice.repo.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -19,7 +18,6 @@ import java.util.List;
 public class CustomerServiceApplication implements CommandLineRunner {
 
     private final CustomerRepository customerRepo;
-    private final AccountService accountService;
 
     public static void main(String[] args) {
         SpringApplication.run(CustomerServiceApplication.class, args);

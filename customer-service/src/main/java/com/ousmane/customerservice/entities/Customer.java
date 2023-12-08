@@ -80,7 +80,6 @@ public class Customer {
         this.city = city;
     }
 
-    @JsonIgnore
     public List<Account> getAccounts() {
         return accounts;
     }
