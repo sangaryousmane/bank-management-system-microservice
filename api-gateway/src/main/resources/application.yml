@@ -6,8 +6,14 @@ spring:
   cloud:
     discovery:
       enabled: true
-#    gateway:
-#      routes:
+    gateway:
+      routes:
+        filters:
+          - name: RequestRateLimiter
+            args:
+              redis-rate-limiter.replenishRate: 500
+              redis-rate-limiter.burstCapacity: 1000
+              redis-rate-limiter.requestedTokens: 1
 #        filters:
 #          - name: CircuitBreaker
 #            args:
