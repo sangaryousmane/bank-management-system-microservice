@@ -26,9 +26,9 @@ public class AccountController {
     }
 
     @GetMapping("/{accountId}")
-    public ResponseEntity<Account> getAccountDetails(
+    public Account getAccountDetails(
             @PathVariable(value = "accountId") Integer accountId) {
-        return ResponseEntity.ok(accountService.getAccountDetails(accountId));
+        return accountService.getAccountDetails(accountId);
     }
 
     @PostMapping("/createAccount")

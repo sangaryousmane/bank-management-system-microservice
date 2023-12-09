@@ -26,6 +26,9 @@ public interface AccountService {
     ResponseEntity<Account> findAccountByBalance(
             @RequestParam("balance") Double balance);
 
+    @GetMapping("/{accountId}")
+    Account getAccountDetails(
+            @PathVariable(value = "accountId") Integer accountId);
 
     default void fallback(CustomerNotFoundException a){
         throw new CustomerNotFoundException(

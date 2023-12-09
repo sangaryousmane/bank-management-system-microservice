@@ -1,10 +1,12 @@
 package com.ousmane.customerservice.service;
 
 import com.ousmane.customerservice.entities.Customer;
+import com.ousmane.customerservice.external.Account;
 import com.ousmane.customerservice.external.consumer.AccountService;
 import com.ousmane.customerservice.repo.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -73,8 +75,10 @@ public class CustomerService {
         return false;
     }
 
-    public String withdraw(Double amount){
-        accountService
+    public String withdraw(Double amount, Integer accountId){
+        Account account =
+                accountService.getAccountDetails(accountId);
+        if (account != null && )
     }
 
 }
