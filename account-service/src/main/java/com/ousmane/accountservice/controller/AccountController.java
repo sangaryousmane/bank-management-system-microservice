@@ -2,7 +2,6 @@ package com.ousmane.accountservice.controller;
 
 import com.ousmane.accountservice.entities.Account;
 import com.ousmane.accountservice.service.AccountServiceImpl;
-import jakarta.ws.rs.Path;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -58,9 +57,9 @@ public class AccountController {
         return ResponseEntity.ok(accountService.findByCustomer(customerId));
     }
 
-    @GetMapping("/accountBalance")
+    @PutMapping("/accountBalance")
     public ResponseEntity<Account> accountByBalance(
             @RequestParam("balance") Double balance){
-        return ResponseEntity.ok(accountService.findByBalance(balance));
+        return ResponseEntity.ok(accountService.updateBalance(balance));
     }
 }

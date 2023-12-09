@@ -1,4 +1,4 @@
-package com.ousmane.accountservice.exceptions;
+package com.ousmane.accountservice;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

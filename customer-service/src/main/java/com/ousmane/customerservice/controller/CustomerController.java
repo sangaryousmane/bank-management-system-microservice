@@ -40,7 +40,7 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.findCustomerByAccountId(customerId));
     }
 
-    @PostMapping("/updateCustomer")
+    @PutMapping("/updateCustomer")
     public ResponseEntity<Customer> updateCustomerDetails(
             @RequestBody Customer customer,
             @RequestParam(value = "customerId") Integer customerId) {
@@ -55,5 +55,13 @@ public class CustomerController {
         Map<String, Boolean> customerDelete = new HashMap<>();
         customerDelete.put("Deleted", isDeleted);
         return ResponseEntity.ok(customerDelete);
+    }
+
+    @PutMapping("/withdraw/{accountId}")
+    public ResponseEntity<String> withdrawFund(
+            @RequestParam(value = "amount") Double amount,
+            @PathVariable("accountId") Integer accountId) {
+        return ResponseEntity.ok(
+                customerService.withdraw(amount, accountId));
     }
 }

@@ -1,15 +1,13 @@
 package com.ousmane.accountservice.service;
 
 import com.ousmane.accountservice.entities.Account;
-import com.ousmane.accountservice.exceptions.AccountNotFoundException;
+import com.ousmane.accountservice.AccountNotFoundException;
 import com.ousmane.accountservice.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 @Service
 @Slf4j
@@ -69,7 +67,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account findByBalance(Double balance) {
+    public Account updateBalance(Double balance) {
         return accountRepository.findAccountByAccountBalance(balance);
     }
 }

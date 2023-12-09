@@ -1,12 +1,12 @@
 package com.ousmane.customerservice.service;
 
+import com.ousmane.customerservice.exceptions.FundInsufficientException;
 import com.ousmane.customerservice.entities.Customer;
 import com.ousmane.customerservice.external.Account;
 import com.ousmane.customerservice.external.consumer.AccountService;
 import com.ousmane.customerservice.repo.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -78,7 +78,13 @@ public class CustomerService {
     public String withdraw(Double amount, Integer accountId){
         Account account =
                 accountService.getAccountDetails(accountId);
-        if (account != null && )
+        if (account == null || amount > account.getAccountBalance()){
+            log.error("Oh Oh! your account balance is too low");
+            throw new FundInsufficientException(
+                    "Sorry, the account balance is low..");
+        }
+        Double balance = account.getAccountBalance() - amount;
+        accountService.updateAccountByBalance(balance);
+        return "Account has been updated successfully";
     }
-
 }
