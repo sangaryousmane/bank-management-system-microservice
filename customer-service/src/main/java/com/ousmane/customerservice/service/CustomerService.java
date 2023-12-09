@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -17,7 +20,12 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
 
     public Iterable<Customer> getAllCustomers() {
-        return customerRepository.findAll();
+        List<Customer> customers = new ArrayList<>();
+        for (Customer customer : customerRepository.findAll()) {
+            customer.setAccounts(accountService.getAccountList(customer.getCustomerId()));
+            customers.add(customer);
+        }
+        return customers;
     }
 
     public Customer saveCustomer(Customer customer) {
@@ -64,4 +72,9 @@ public class CustomerService {
         log.error("OH OH! customer with ID {} can't be deleted", customerId);
         return false;
     }
+
+    public String withdraw(Double amount){
+        accountService
+    }
+
 }

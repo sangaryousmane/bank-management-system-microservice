@@ -67,4 +67,9 @@ public class AccountServiceImpl implements AccountService {
     public List<Account> findByCustomer(Integer customerId) {
         return accountRepository.findByCustomerId(customerId);
     }
+
+    @Override
+    public Account findByBalance(Double balance) {
+        return accountRepository.findAccountByAccountBalance(balance);
+    }
 }

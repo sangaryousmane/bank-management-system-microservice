@@ -24,9 +24,11 @@ public class Customer {
     private String customerPhone;
     private String email;
     private String city;
+    private Double withdrawalAmount;
 
     @Transient
     private List<Account> accounts;
+
 
     @Override
     public String toString() {
@@ -36,6 +38,7 @@ public class Customer {
                 ", customerPhone='" + customerPhone + '\'' +
                 ", email='" + email + '\'' +
                 ", city='" + city + '\'' +
+                ", withdrawalAmount=" + withdrawalAmount +
                 ", accounts=" + accounts +
                 '}';
     }

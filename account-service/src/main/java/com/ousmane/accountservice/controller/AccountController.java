@@ -57,4 +57,10 @@ public class AccountController {
             @PathVariable("customerId") Integer customerId){
         return ResponseEntity.ok(accountService.findByCustomer(customerId));
     }
+
+    @GetMapping("/accountBalance")
+    public ResponseEntity<Account> accountByBalance(
+            @RequestParam("balance") Double balance){
+        return ResponseEntity.ok(accountService.findByBalance(balance));
+    }
 }
