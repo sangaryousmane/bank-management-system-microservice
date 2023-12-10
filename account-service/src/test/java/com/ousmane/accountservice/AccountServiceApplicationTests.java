@@ -21,7 +21,7 @@ class AccountServiceApplicationTests {
     @Test
     void findByAccountBalance(){
         Account account =
-                repo.findAccountByAccountBalance(300.9);
+                repo.findAccountByAccountBalance(300.9, 1);
         assertThat(account.getAccountId()).isGreaterThanOrEqualTo(4000);
         System.out.println("PASSED");
     }
