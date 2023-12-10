@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JCircuitBreakerFactory;
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JConfigBuilder;
 import org.springframework.cloud.client.circuitbreaker.Customizer;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.discovery.ReactiveDiscoveryClient;
 import org.springframework.cloud.gateway.discovery.DiscoveryClientRouteDefinitionLocator;
 import org.springframework.cloud.gateway.discovery.DiscoveryLocatorProperties;
@@ -16,6 +17,7 @@ import reactor.core.publisher.Mono;
 
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class GatewayApplication {
 
     public static void main(String[] args) {
@@ -59,15 +61,15 @@ public class GatewayApplication {
                 .build();
     }
 
-    @Bean
-    public DiscoveryClientRouteDefinitionLocator dynamicRoute(
-            ReactiveDiscoveryClient reactiveDiscoveryClient,
-            DiscoveryLocatorProperties discoveryLocatorProperties
-    ) {
-        return new DiscoveryClientRouteDefinitionLocator(
-                reactiveDiscoveryClient,
-                discoveryLocatorProperties
-        );
-    }
+//    @Bean
+//    public DiscoveryClientRouteDefinitionLocator dynamicRoute(
+//            ReactiveDiscoveryClient reactiveDiscoveryClient,
+//            DiscoveryLocatorProperties discoveryLocatorProperties
+//    ) {
+//        return new DiscoveryClientRouteDefinitionLocator(
+//                reactiveDiscoveryClient,
+//                discoveryLocatorProperties
+//        );
+//    }
 }
 
