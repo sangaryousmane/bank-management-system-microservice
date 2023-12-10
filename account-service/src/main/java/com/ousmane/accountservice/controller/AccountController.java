@@ -57,9 +57,10 @@ public class AccountController {
         return ResponseEntity.ok(accountService.findByCustomer(customerId));
     }
 
-    @PutMapping("/accountBalance")
-    public ResponseEntity<Account> accountByBalance(
+    @PutMapping("/accountBalance/{accountId}")
+    public Account accountByBalance(
+            @PathVariable("accountId") Integer accountId,
             @RequestParam("balance") Double balance){
-        return ResponseEntity.ok(accountService.updateBalance(balance));
+        return accountService.updateBalance(accountId, balance);
     }
 }

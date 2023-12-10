@@ -14,5 +14,5 @@ public interface AccountService {
     Account updateAccountDetails(Account account, Integer accountId);
     List<Account> findByBankName(String bankName);
     List<Account> findByCustomer(Integer customerId);
-    Account updateBalance(Double balance);
+    Account updateBalance(Integer accountId, Double balance);
 }

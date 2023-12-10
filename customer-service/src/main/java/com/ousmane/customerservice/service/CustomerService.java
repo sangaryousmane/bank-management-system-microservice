@@ -1,5 +1,6 @@
 package com.ousmane.customerservice.service;
 
+import com.ousmane.customerservice.exceptions.CustomerNotFoundException;
 import com.ousmane.customerservice.exceptions.FundInsufficientException;
 import com.ousmane.customerservice.entities.Customer;
 import com.ousmane.customerservice.external.Account;
@@ -53,7 +54,7 @@ public class CustomerService {
     public Customer getCustomerById(Integer customerId) {
         log.info("Retrieving customer details by ID: {}", customerId);
         return customerRepository.findById(customerId)
-                .orElseThrow(() -> new RuntimeException("customer not found"));
+                .orElseThrow(() -> new CustomerNotFoundException("customer not found"));
     }
 
     public Customer findCustomerByAccountId(Integer customerId) {
@@ -76,15 +77,14 @@ public class CustomerService {
     }
 
     public String withdraw(Double amount, Integer accountId){
-        Account account =
-                accountService.getAccountDetails(accountId);
+        Account account = accountService.getAccountDetails(accountId);
         if (account == null || amount > account.getAccountBalance()){
             log.error("Oh Oh! your account balance is too low");
             throw new FundInsufficientException(
                     "Sorry, the account balance is low..");
         }
         Double balance = account.getAccountBalance() - amount;
-        accountService.updateAccountByBalance(balance);
+        accountService.updateAccountByBalance(accountId, balance);
         return "Account has been updated successfully";
     }
 }

@@ -24,7 +24,8 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account getAccountDetails(Integer accountId) {
         return accountRepository.findById(accountId)
-                .orElseThrow(() -> new AccountNotFoundException("Account Not found"));
+                .orElseThrow(() ->
+                        new AccountNotFoundException("Account Not found"));
     }
 
     @Override
@@ -67,7 +68,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account updateBalance(Double balance) {
-        return accountRepository.findAccountByAccountBalance(balance);
+    public Account updateBalance(Integer accountId, Double balance) {
+        return accountRepository.findAccountByAccountBalance(balance, accountId);
     }
 }

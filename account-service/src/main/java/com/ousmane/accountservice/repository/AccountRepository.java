@@ -3,6 +3,7 @@ package com.ousmane.accountservice.repository;
 import com.ousmane.accountservice.entities.Account;
 import com.ousmane.accountservice.entities.AccountType;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -21,6 +22,12 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Query("SELECT a FROM Account a WHERE a.customerId=:customerId")
     List<Account> findByCustomerId(@Param("customerId") Integer customerId);
 
-    @Query("SELECT a FROM Account a WHERE a.accountBalance=:balance")
-    Account findAccountByAccountBalance(@Param("balance") Double balance);
+
+    // Update an account giving the ID
+    @Modifying
+    @Query("UPDATE Account a SET a.accountBalance=:balance WHERE " +
+            "a.accountId=:accountId")
+    Account findAccountByAccountBalance(
+            @Param("balance") Double balance,
+            @Param("accountId") Integer accountId);
 }
