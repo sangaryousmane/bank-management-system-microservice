@@ -13,7 +13,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
                         email = "sangary7683@yahoo.com",
                         url = "https://ousmane.hashnode.dev/find-the-peak-element-in-a-mountain-array-java"),
                 description = "OPEN API DOCUMENTATION FOR THE ACCOUNT MICROSERVICE",
-                title = "OPEN API SPECIFICATION",
+                title = "OPEN API SPECIFICATION MANAGING CUSTOMERS ACCOUNTS",
                 version = "1.0",
                 license = @License(
                         name = "MIT LICENSE",

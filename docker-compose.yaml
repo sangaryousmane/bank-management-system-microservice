@@ -5,12 +5,16 @@ services:
     container_name: 'service-registry'
     ports:
       - '8761:8761'
+    networks:
+      - sangary
 
   configserver:
     image: 'ousmane1999/config-server:latest'
     container_name: 'config-server'
     ports:
       - '9296:9296'
+    networks:
+      - sangary
     environment:
       - EUREKA_URI=http://serviceregistry:8761/eureka
     healthcheck:
@@ -26,6 +30,8 @@ services:
     container_name: 'cloud-gateway'
     ports:
       - '8080:8080'
+    networks:
+      - sangary
     environment:
       - EUREKA_SERVER_ADDRESS=http://serviceregistry:8761/eureka
       - CONFIG_SERVER_URL=configserver
@@ -39,6 +45,8 @@ services:
     container_name: 'account-service'
     ports:
       - '6060:6060'
+    networks:
+      - sangary
     environment:
       - EUREKA_SERVER_ADDRESS=http://serviceregistry:8761/eureka
       - CONFIG_SERVER_URL=configserver
@@ -51,6 +59,10 @@ services:
   customerservice:
     image: 'ousmane1999/customer-service:latest'
     container_name: 'customer-service'
+    ports:
+      - "8083:8083"
+    networks:
+      - sangary
     environment:
       - EUREKA_SERVER_ADDRESS=http://serviceregistry:8761/eureka
       - CONFIG_SERVER_URL=configserver
@@ -65,6 +77,8 @@ services:
     container_name: 'consumer-web-app'
     ports:
       - '6464:6464'
+    networks:
+      - sangary
     environment:
       - EUREKA_SERVER_ADDRESS=http://serviceregistry:8761/eureka
       - CONFIG_SERVER_URL=configserver
@@ -79,3 +93,7 @@ services:
       - accountservice
     ports:
       - "6061:6061"
+
+networks:
+  sangary:
+    driver: "bridge"
