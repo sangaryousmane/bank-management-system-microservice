@@ -1,4 +1,4 @@
-package com.ousmane.accountservice;
+package com.ousmane.accountservice.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

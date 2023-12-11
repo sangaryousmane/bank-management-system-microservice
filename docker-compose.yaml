@@ -1,0 +1,81 @@
+version: '3'
+services:
+  serviceregistry:
+    image: 'ousmane1999/service-registry:latest'
+    container_name: 'service-registry'
+    ports:
+      - '8761:8761'
+
+  configserver:
+    image: 'ousmane1999/config-server:latest'
+    container_name: 'config-server'
+    ports:
+      - '9296:9296'
+    environment:
+      - EUREKA_URI=http://serviceregistry:8761/eureka
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://configserver:9296/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      - serviceregistry
+
+  cloudgateway:
+    image: 'ousmane1999/api-gateway:latest'
+    container_name: 'cloud-gateway'
+    ports:
+      - '8080:8080'
+    environment:
+      - EUREKA_SERVER_ADDRESS=http://serviceregistry:8761/eureka
+      - CONFIG_SERVER_URL=configserver
+    depends_on:
+      configserver:
+        condition: service_healthy
+
+
+  accountservice:
+    image: 'ousmane1999/account-service:latest'
+    container_name: 'account-service'
+    ports:
+      - '6060:6060'
+    environment:
+      - EUREKA_SERVER_ADDRESS=http://serviceregistry:8761/eureka
+      - CONFIG_SERVER_URL=configserver
+    depends_on:
+      configserver:
+        condition: service_healthy
+  #      - serviceregistry
+  #      - cloudgateway
+
+  customerservice:
+    image: 'ousmane1999/customer-service:latest'
+    container_name: 'customer-service'
+    environment:
+      - EUREKA_SERVER_ADDRESS=http://serviceregistry:8761/eureka
+      - CONFIG_SERVER_URL=configserver
+    depends_on:
+      configserver:
+        condition: service_healthy
+  #      - serviceregistry
+  #      - cloudgateway
+
+  webconsumerapp:
+    image: 'ousmane1999/consumer-web-app:0.10.2'
+    container_name: 'consumer-web-app'
+    ports:
+      - '6464:6464'
+    environment:
+      - EUREKA_SERVER_ADDRESS=http://serviceregistry:8761/eureka
+      - CONFIG_SERVER_URL=configserver
+    depends_on:
+      configserver:
+        condition: service_healthy
+
+  account_loadbalancer:
+    image: 'tutum/haproxy'
+    container_name: 'haproxy-loadbalancer'
+    links:
+      - accountservice
+    ports:
+      - "6061:6061"

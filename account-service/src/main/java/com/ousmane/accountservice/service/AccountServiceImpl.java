@@ -1,7 +1,7 @@
 package com.ousmane.accountservice.service;
 
 import com.ousmane.accountservice.entities.Account;
-import com.ousmane.accountservice.AccountNotFoundException;
+import com.ousmane.accountservice.exceptions.AccountNotFoundException;
 import com.ousmane.accountservice.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
