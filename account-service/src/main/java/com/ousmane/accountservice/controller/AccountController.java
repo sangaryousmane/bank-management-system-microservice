@@ -53,6 +53,25 @@ public class AccountController {
         return accountService.getAllCurrentAccounts();
     }
 
+
+    @Operation(
+            method = "GET",
+            summary = "API for requesting account details",
+            description = "This is a GET request for retrieving an account details from DB"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP status code for successfully retrieving account details"
+            ),
+            @ApiResponse(
+                    responseCode = "405",
+                    description = "Invalid HTTP Status for Method Not Allowed",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponse.class)
+                    )
+            )
+    })
     @GetMapping("/{accountId}")
     public Account getAccountDetails(
             @PathVariable(value = "accountId") Integer accountId) {
@@ -77,7 +96,7 @@ public class AccountController {
     @PostMapping("/createAccount")
     public ResponseEntity<Account> createAccount(
             @RequestBody Account account) {
-        return ResponseEntity.ok(accountService.createAccount(account));
+        return ResponseEntity.ok().body(accountService.createAccount(account));
     }
 
     @Operation(summary = "API for updating account details - PUT request",
@@ -113,6 +132,24 @@ public class AccountController {
     }
 
 
+    @Operation(
+            method = "DELETE",
+            summary = "API for deleting a customer account given the ID",
+            description = "This is a DELETE request for deleting customer account from DB"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP status code deleting account"
+            ),
+            @ApiResponse(
+                    responseCode = "405",
+                    description = "Invalid HTTP Status for Method Not Allowed",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponse.class)
+                    )
+            )
+    })
     @DeleteMapping("/deleteAccount/{accountId}")
     public ResponseEntity<Map<String, Boolean>> deleteAccount(@PathVariable Integer accountId) {
         boolean isAccountDeleted = accountService.deleteAccount(accountId);
@@ -122,11 +159,38 @@ public class AccountController {
     }
 
 
+    @Operation(
+            method = "GET",
+            summary = "API for requesting account based on a given customer",
+            description = "This is a GET request for retrieving all the accounts attached " +
+                    "to a given customer in DB"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP status code for successfully retrieving account details"
+            ),
+            @ApiResponse(
+                    responseCode = "405",
+                    description = "Invalid HTTP Status for Method Not Allowed",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponse.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Customer not found",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponse.class)
+                    )
+            )
+    })
     @GetMapping("/customer/{customerId}")
     public ResponseEntity<List<Account>> accountByCustomer(
             @PathVariable("customerId") Integer customerId) {
         return ResponseEntity.ok(accountService.findByCustomer(customerId));
     }
+
 
 
     @Operation(hidden = true)
