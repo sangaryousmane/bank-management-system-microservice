@@ -68,8 +68,11 @@ public class CustomerService {
         boolean isCustomerExist = customerRepository.existsById(customerId);
 
         if (isCustomerExist) {
-            customerRepository.deleteById(customerId);
-            log.info("Deleting customers by ID: {}", customerId);
+            List<Account> accounts = accountService.getAccountList(customerId);
+            Customer customer = customerRepository.findById(customerId).get();
+            customer.setAccounts(accounts);
+            customerRepository.delete(customer);
+            log.info("Deleting customers and related accounts by ID: {}", customerId);
             return true;
         }
         log.error("OH OH! customer with ID {} can't be deleted", customerId);
