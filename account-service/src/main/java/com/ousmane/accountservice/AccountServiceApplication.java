@@ -1,4 +1,6 @@
 package com.ousmane.accountservice;
+
+import com.github.javafaker.Faker;
 import com.ousmane.accountservice.entities.Account;
 import com.ousmane.accountservice.entities.AccountType;
 import com.ousmane.accountservice.repository.AccountRepository;
@@ -8,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -16,6 +19,7 @@ import java.util.List;
 public class AccountServiceApplication implements CommandLineRunner {
 
     private final AccountRepository accountRepo;
+
     public static void main(String[] args) {
         SpringApplication.run(AccountServiceApplication.class, args);
     }
@@ -23,27 +27,24 @@ public class AccountServiceApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Account account=Account.builder()
-                .accountId(1).accountBalance(2231.01)
-                .accountType(AccountType.SAVING).bankName("BOC")
-                .customerId(12).branchCode("BOC123")
-                .build();
-         Account account1=Account.builder()
-                .accountId(2).accountBalance(4001.01)
-                 .accountType(AccountType.CREDIT)
-                .bankName("ICBC").customerId(12).branchCode("ICBC123")
-                .build();
-         Account account2=Account.builder()
-                .accountId(3).accountBalance(5011.11)
-                .accountType(AccountType.SAVING).bankName("PSB")
-                .customerId(13).branchCode("PSB123")
-                .build();
-         Account account3=Account.builder()
-                .accountId(3).accountBalance(1001.11)
-                .accountType(AccountType.DEBIT).bankName("PSB")
-                .customerId(14).branchCode("PSB123")
-                .build();
-         accountRepo.saveAll(
-                 List.of(account, account1, account2, account3));
+        Faker faker = new Faker();
+        List<Account> accounts = new ArrayList<>();
+
+        for (int i = 0; i < 150; i++) {
+            Account account = Account.builder()
+                    .accountId(faker.number().numberBetween(1, 153))
+                    .bankName(faker.finance().creditCard())
+                    .accountBalance(faker.number().randomDouble(100, 300, 10000))
+                    .customerId(faker.number().numberBetween(1, 153))
+                    .branchCode(faker.commerce().promotionCode()).build();
+            if (i % 2 == 0)
+                account.setAccountType(AccountType.CREDIT);
+            else if (i % 3 == 0)
+                account.setAccountType(AccountType.SAVING);
+            else
+                account.setAccountType(AccountType.DEBIT);
+            accounts.add(account);
+        }
+        accountRepo.saveAll(accounts);
     }
 }
