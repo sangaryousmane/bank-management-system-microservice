@@ -1,20 +1,22 @@
 package com.ousmane.customerservice.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ousmane.customerservice.external.Account;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-
 
 import java.util.List;
 
 @Entity(name = "Customer")
 @Table(name = "customers")
 @AllArgsConstructor
-@Builder @NoArgsConstructor
+@Builder
+@NoArgsConstructor
 public class Customer {
 
     @Id
@@ -24,7 +26,6 @@ public class Customer {
     private String customerPhone;
     private String email;
     private String city;
-    private Double withdrawalAmount;
 
     @Transient
     private List<Account> accounts;
@@ -38,7 +39,6 @@ public class Customer {
                 ", customerPhone='" + customerPhone + '\'' +
                 ", email='" + email + '\'' +
                 ", city='" + city + '\'' +
-                ", withdrawalAmount=" + withdrawalAmount +
                 ", accounts=" + accounts +
                 '}';
     }

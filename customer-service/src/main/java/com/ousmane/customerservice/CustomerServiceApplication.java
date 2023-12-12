@@ -1,5 +1,6 @@
 package com.ousmane.customerservice;
 
+import com.github.javafaker.Faker;
 import com.ousmane.customerservice.entities.Customer;
 import com.ousmane.customerservice.repo.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -26,26 +28,18 @@ public class CustomerServiceApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Customer customer = Customer.builder()
-                .customerId(12)
-                .customerName("Ousmane Sangary")
-                .customerPhone("13237080231")
-                .city("Wuhan")
-                .email("sangary@gmail.com").build();
+        Faker faker = new Faker();
+        List<Customer> customers = new ArrayList<>();
 
-        Customer customer1 = Customer.builder()
-                .customerId(13)
-                .customerName("Peter Pratt")
-                .customerPhone("122992332")
-                .city("Beijing")
-                .email("peter@gmail.com").build();
-
-        Customer customer2 = Customer.builder()
-                .customerId(14)
-                .customerName("James Gaye")
-                .customerPhone("14223334111")
-                .city("Shanghai")
-                .email("james@gmail.com").build();
-        customerRepo.saveAll(List.of(customer, customer1, customer2));
+        for (int i = 0; i < 150; i++) {
+            Customer customer = Customer.builder()
+                    .customerId(faker.number().numberBetween(1, 153))
+                    .customerName(faker.name().fullName())
+                    .customerPhone(faker.phoneNumber().cellPhone())
+                    .city(faker.address().cityName())
+                    .email(faker.internet().emailAddress()).build();
+            customers.add(customer);
+        }
+        customerRepo.saveAll(customers);
     }
 }
