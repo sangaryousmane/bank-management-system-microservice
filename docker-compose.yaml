@@ -73,7 +73,7 @@ services:
   #      - cloudgateway
 
   webconsumerapp:
-    image: 'ousmane1999/consumer-web-app:0.10.2'
+    image: 'ousmane1999/consumer-web-app:latest'
     container_name: 'consumer-web-app'
     ports:
       - '6464:6464'
@@ -91,6 +91,8 @@ services:
     container_name: 'haproxy-loadbalancer'
     links:
       - accountservice
+      - customerservice
+      - webconsumerapp
     ports:
       - "6061:6061"
 
