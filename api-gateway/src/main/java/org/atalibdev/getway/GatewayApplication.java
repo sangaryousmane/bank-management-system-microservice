@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono;
 
 
 @SpringBootApplication
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 public class GatewayApplication {
 
     public static void main(String[] args) {
@@ -61,15 +61,15 @@ public class GatewayApplication {
                 .build();
     }
 
-//    @Bean
-//    public DiscoveryClientRouteDefinitionLocator dynamicRoute(
-//            ReactiveDiscoveryClient reactiveDiscoveryClient,
-//            DiscoveryLocatorProperties discoveryLocatorProperties
-//    ) {
-//        return new DiscoveryClientRouteDefinitionLocator(
-//                reactiveDiscoveryClient,
-//                discoveryLocatorProperties
-//        );
-//    }
+    @Bean
+    public DiscoveryClientRouteDefinitionLocator dynamicRoute(
+            ReactiveDiscoveryClient reactiveDiscoveryClient,
+            DiscoveryLocatorProperties discoveryLocatorProperties
+    ) {
+        return new DiscoveryClientRouteDefinitionLocator(
+                reactiveDiscoveryClient,
+                discoveryLocatorProperties
+        );
+    }
 }
 
